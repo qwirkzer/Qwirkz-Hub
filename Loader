@@ -6,7 +6,7 @@ function getUniverseIdByPlaceId(p: number)
     local s1, t = pcall(function()
         local uni = game:HttpGet("https://apis.roblox.com/universes/v1/places/" .. p .. "/universe", true)
         return https:JSONDecode(uni)
-    end
+    end)
 
     if s1 and t then
         id = t.universeId or 0
