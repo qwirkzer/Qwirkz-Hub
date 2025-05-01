@@ -103,20 +103,30 @@ ToolsTab:CreateSection("Animated Tools")
 
 -- Helicopter Powers Button
 ToolsTab:CreateButton({
-    Name = "Helicopter Powers",
-    Callback = function()
-        -- The function that takes place when the button is pressed
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/helicopterpowers.lua", true))()
-    end,
+   Name = "Helicopter Powers",
+   Callback = function()
+      -- The function that takes place when the button is pressed
+      game.Players.LocalPlayer.Backpack.ChildRemoved:Connect(function(child)
+         if child.Name == "Helicopter Powers" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/helicopterpowers.lua", true))()
+         end
+      end)
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/helicopterpowers.lua", true))()
+   end,
 })
 
 -- T-Pose Button
 ToolsTab:CreateButton({
-    Name = "T-Pose",
-    Callback = function()
-        -- The function that takes place when the button is pressed
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/tpose.lua", true))()
-    end,
+   Name = "T-Pose",
+   Callback = function()
+      -- The function that takes place when the button is pressed
+      game.Players.LocalPlayer.Backpack.ChildRemoved:Connect(function(child)
+         if child.Name == "T-Pose" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/tpose.lua", true))()
+         end
+      end)
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/tpose.lua", true))()
+   end,
 })
 
 -- Other Section
