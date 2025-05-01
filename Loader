@@ -1,24 +1,24 @@
 -- // Qwirkz Hub Universal Loader
-local https = game:GetService( 'HttpService' )
+local https = game:GetService("HttpService")
 
-function getUniverseIdByPlaceId(p : number)
+function getUniverseIdByPlaceId(p: number)
     local id = 0
     local s1, t = pcall(function()
-        local uni = game:HttpGet( "https://apis.roblox.com/universes/v1/places/" ..p.. "/universe" , true)
+        local uni = game:HttpGet("https://apis.roblox.com/universes/v1/places/" .. p .. "/universe", true)
         return https:JSONDecode(uni)
     end
 
     if s1 and t then
         id = t.universeId or 0
     elseif not s1 then
-        warn( "Something went wrong while trying to get UniverseId | Error Code: " ..t )
+        warn("Something went wrong while trying to get UniverseId | Error Code: " .. t)
     end
 
     return id
 end
 
 if getUniverseIdByPlaceId(game.PlaceId) == 3264581003 then
-    loadstring(game:HttpGet( "https://raw.githubusercontent.com/qwirkzer/Qwirkz-Hub/refs/heads/main/etoh.luau" , true))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/Qwirkz-Hub/refs/heads/main/etoh.luau", true))()
 else
     warn("Your game is not supported, please try another game")
 end
