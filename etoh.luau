@@ -64,21 +64,37 @@ FarmingTab:CreateInput({
     end,
 })
 
+-- Time Selection Input
+local timeInput = 0
+FarmingTab:CreateInput({
+    Name = "Select Time To Beat",
+    CurrentValue = "0",
+    PlaceholderText = "Leave blank for 0 time",
+    RemoveTextAfterFocusLost = false,
+    Flag = "TimeSelection",
+    Callback = function(Text)
+         timeInput = tonumber(Text) or 0
+         if string.find(Text, "inf") then
+            timeInput = math.huge
+         end
+    end,
+})
+
 -- Beat all towers Button
 FarmingTab:CreateButton({
-    Name = "Beat All Towers [Non-SCs]",
+    Name = "[NON-SCS] Beat All Towers With Time",
     Callback = function()
         -- The function that takes place when the button is pressed
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/jtohautowin.lua", true))()()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/jtohautowin.lua", true))()(nil, timeInput)
     end,
 })
 
 -- Beat Selected Tower Button
 FarmingTab:CreateButton({
-    Name = "Beat Selected Tower [Non-SC]",
+    Name = "[NON-SC] Beat Selected Tower With Time",
     Callback = function()
         -- The function that takes place when the button is pressed
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/jtohautowin.lua", true))()(currentInput)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/jtohautowin.lua", true))()(currentInput, timeInput)
     end,
 })
 
@@ -90,7 +106,7 @@ FarmingTab:CreateSection("Manual Win")
 
 -- Infinity Jump Button
 FarmingTab:CreateButton({
-    Name = "Infinite Jump [Z]",
+    Name = "Jump Infinitely [Z]",
     Callback = function()
         -- The function that takes place when the button is pressed
         loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/infjump.lua", true))()("Z")
