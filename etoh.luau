@@ -144,6 +144,26 @@ ToolsTab:CreateButton({
 -- Boost Section
 ToolsTab:CreateSection("Boost Items")
 
+-- Bypass Boost Item Detection Toggle
+ToolsTab:CreateToggle({
+   Name = "Bypass Boost Item Detection",
+   CurrentValue = false,
+   Flag = "BoostBypass", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+      -- The function that takes place when the toggle is pressed
+      -- The variable (Value) is a boolean on whether the toggle is true or false
+      if Value == false then
+         for _, item in game.Players.LocalPlayer.Backpack do
+            item.Name = item.Name:gsub("-nodetect", "")
+         end
+      elseif Value == true then
+         for _, item in game.Players.LocalPlayer.Backpack do
+            item.Name = item.Name .. "-nodetect"
+         end
+      end
+   end,
+})
+
 -- Bootleg Coil Button
 ToolsTab:CreateButton({
    Name = "Bootleg Coil",
