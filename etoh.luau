@@ -169,7 +169,7 @@ ToolsTab:CreateToggle({
 
          con = game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(item)
             item.Name = item.Name .. "-nodetect"
-         end
+         end)
       end
    end,
 })
