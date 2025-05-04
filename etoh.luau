@@ -168,6 +168,18 @@ ToolsTab:CreateButton({
    end,
 })
 
+-- Vertical Mobility Button
+ToolsTab:CreateButton({
+   Name = "Vertical Mobility",
+   Callback = function()
+      -- The function that takes place when the button is pressed
+      game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/verticalmobility.lua", true))()
+      end)
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/verticalmobility.lua", true))()
+   end,
+})
+
 -- Other Section
 ToolsTab:CreateSection("Other Tools")
 
