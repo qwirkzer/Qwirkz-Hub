@@ -153,11 +153,11 @@ ToolsTab:CreateToggle({
       -- The function that takes place when the toggle is pressed
       -- The variable (Value) is a boolean on whether the toggle is true or false
       if Value == false then
-         for _, item in game.Players.LocalPlayer.Backpack do
+         for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
             item.Name = item.Name:gsub("-nodetect", "")
          end
       elseif Value == true then
-         for _, item in game.Players.LocalPlayer.Backpack do
+         for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
             item.Name = item.Name .. "-nodetect"
          end
       end
