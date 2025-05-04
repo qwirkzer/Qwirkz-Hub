@@ -141,6 +141,33 @@ ToolsTab:CreateButton({
    end,
 })
 
+-- Boost Section
+ToolsTab:CreateSection("Boost Items")
+
+-- Bootleg Coil Button
+ToolsTab:CreateButton({
+   Name = "Bootleg Coil",
+   Callback = function()
+      -- The function that takes place when the button is pressed
+      game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/bootlegcoil.lua", true))()
+      end)
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/bootlegcoil.lua", true))()
+   end,
+})
+
+-- Bootleg Speed Coil Button
+ToolsTab:CreateButton({
+   Name = "Bootleg Speed Coil",
+   Callback = function()
+      -- The function that takes place when the button is pressed
+      game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/bootlegspeedcoil.lua", true))()
+      end)
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/etoh/tools/bootlegspeedcoil.lua", true))()
+   end,
+})
+
 -- Other Section
 ToolsTab:CreateSection("Other Tools")
 
