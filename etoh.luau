@@ -144,6 +144,8 @@ ToolsTab:CreateButton({
 -- Boost Section
 ToolsTab:CreateSection("Boost Items")
 
+local connection = nil
+
 -- Bypass Boost Item Detection Toggle
 ToolsTab:CreateToggle({
    Name = "Bypass Boost Item Detection",
@@ -153,10 +155,21 @@ ToolsTab:CreateToggle({
       -- The function that takes place when the toggle is pressed
       -- The variable (Value) is a boolean on whether the toggle is true or false
       if Value == false then
+         connection = false
          for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
             item.Name = item.Name:gsub("-nodetect", "")
          end
       elseif Value == true then
+         if connection then
+            connection:Disconnect()
+         end
+         if connection ~= false then
+            connection = game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+               for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
+                  item.Name = item.Name .. "-nodetect"
+               end
+            end)
+         end
          for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
             item.Name = item.Name .. "-nodetect"
          end
