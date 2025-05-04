@@ -155,6 +155,7 @@ ToolsTab:CreateToggle({
       -- The function that takes place when the toggle is pressed
       -- The variable (Value) is a boolean on whether the toggle is true or false
       if Value == false then
+         connection:Disconnect()
          connection = false
          for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
             item.Name = item.Name:gsub("-nodetect", "")
