@@ -154,22 +154,28 @@ ToolsTab:CreateToggle({
    Callback = function(Value)
       -- The function that takes place when the toggle is pressed
       -- The variable (Value) is a boolean on whether the toggle is true or false
+      print(con, 1)
       if Value == false then
+         print(con, 1.9)
          if con then
             con:Disconnect()
          end
-         
+         print(con, 2)
          for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
+            print(item, 2)
             item.Name = item.Name:gsub("-nodetect", "")
          end
       elseif Value == true then
          for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
+            print(item, 1)
             item.Name = item.Name .. "-nodetect"
          end
-
+         print(con, 3)
          con = game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(item)
+            print(item, 3)
             item.Name = item.Name .. "-nodetect"
          end)
+         print(con, 4)
       end
    end,
 })
