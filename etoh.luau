@@ -145,6 +145,7 @@ ToolsTab:CreateButton({
 ToolsTab:CreateSection("Boost Items")
 
 local con = nil
+local con2 = nil
 
 -- Bypass Boost Item Detection Toggle
 ToolsTab:CreateToggle({
@@ -160,6 +161,9 @@ ToolsTab:CreateToggle({
          if con then
             con:Disconnect()
          end
+         if con2 then
+            con2:Disconnect()
+         end
          print(con, 2)
          for _, item in game.Players.LocalPlayer.Backpack:GetChildren() do
             print(item, 2)
@@ -171,9 +175,18 @@ ToolsTab:CreateToggle({
             item.Name = item.Name .. "-nodetect"
          end
          print(con, 3)
-         con = game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(item)
+         con = game.Players.LocalPlayer.ChildAdded:Connect(function(item)
             print(item, 3)
-            item.Name = item.Name .. "-nodetect"
+            if item.Name == "Backpack" then
+               print(item, 4)
+               if con2 then
+                  con2:Disconnect()
+               end
+               con2 = item.ChildAdded:Connect(function(item)
+                  print(item, 5)
+                  item.Name = item.Name .. "-nodetect"
+               end)
+            end
          end)
          print(con, 4)
       end
