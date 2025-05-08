@@ -113,6 +113,24 @@ FarmingTab:CreateButton({
     end,
 })
 
+-- Time Reversal Button
+FarmingTab:CreateButton({
+    Name = "Time Reverser [C]",
+    Callback = function()
+        -- The function that takes place when the button is pressed
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/Flashback.luau", true))()
+    end,
+})
+
+-- Godmode Button
+FarmingTab:CreateButton({
+    Name = "Godmode",
+    Callback = function()
+        -- The function that takes place when the button is pressed
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/GodMode.luau", true))()
+    end,
+})
+
 -- Tools Tab
 -- Animation Section
 ToolsTab:CreateSection("Animated Tools")
