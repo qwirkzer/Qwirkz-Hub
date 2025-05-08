@@ -174,6 +174,10 @@ ToolsTab:CreateToggle({
             print(item, 1)
             item.Name = item.Name .. "-nodetect"
          end
+         con2 = game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(item)
+            print(item, 2.2)
+            item.Name = item.Name .. "-nodetect"
+         end)
          print(con, 3)
          con = game.Players.LocalPlayer.ChildAdded:Connect(function(item)
             print(item, 3)
