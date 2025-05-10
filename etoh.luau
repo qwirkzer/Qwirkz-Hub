@@ -263,6 +263,18 @@ ToolsTab:CreateButton({
     end,
 })
 
+-- TelePort Tool Button
+ToolsTab:CreateButton({
+    Name = "Teleport Tool",
+    Callback = function()
+        -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/tools/TPTool.luau", true))()
+        end)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/tools/TPTool.luau", true))()
+    end,
+})
+
 -- Other Tab
 OtherTab:CreateButton({
     Name = "Exit UI",
