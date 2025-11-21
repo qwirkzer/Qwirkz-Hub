@@ -46,7 +46,8 @@ local OtherTab = Window:CreateTab("Other", "info")
 MainTab:CreateLabel("Coming Soon", "circle-help")
 
 -- Farming Tab
--- Autowin Section
+-- Autowin Section (broken as of etoh's game code rewrite)
+--[[
 FarmingTab:CreateSection("Autowin")
 
 -- Tower Selection Input
@@ -97,7 +98,7 @@ FarmingTab:CreateButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/scripts/refs/heads/main/jtohautowin.lua", true))()(currentInput, timeInput)
     end,
 })
-
+]]
 -- Manual Win Section
 FarmingTab:CreateSection("Manual Win")
 
