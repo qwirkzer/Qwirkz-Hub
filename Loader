@@ -1,8 +1,67 @@
--- // Qwirkz Hub Universal Loader
-local https = game:GetService("HttpService")
+----------------------------------------------------------------------------------------------------------
+--                                                                                                      --
+--                             /$$           /$$                       /$$   /$$           /$$          --
+--                            |__/          | $$                      | $$  | $$          | $$          --
+--      /$$$$$$  /$$  /$$  /$$ /$$  /$$$$$$ | $$   /$$ /$$$$$$$$      | $$  | $$ /$$   /$$| $$$$$$$     --
+--     /$$__  $$| $$ | $$ | $$| $$ /$$__  $$| $$  /$$/|____ /$$/      | $$$$$$$$| $$  | $$| $$__  $$    --
+--    | $$  \ $$| $$ | $$ | $$| $$| $$  \__/| $$$$$$/    /$$$$/       | $$__  $$| $$  | $$| $$  \ $$    --
+--    | $$  | $$| $$ | $$ | $$| $$| $$      | $$_  $$   /$$__/        | $$  | $$| $$  | $$| $$  | $$    --
+--    |  $$$$$$$|  $$$$$/$$$$/| $$| $$      | $$ \  $$ /$$$$$$$$      | $$  | $$|  $$$$$$/| $$$$$$$/    --
+--     \____  $$ \_____/\___/ |__/|__/      |__/  \__/|________/      |__/  |__/ \______/ |_______/     --
+--          | $$                                                                                        --
+--          | $$                                                                                        --
+--          |__/                                                                                        --
+--                                                                                                      --
+----------------------------------------------------------------------------------------------------------
 
-if game.GameId == 3264581003 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/qwirkzer/Qwirkz-Hub/refs/heads/main/etoh.luau", true))()
-else
-    warn("Your game is not supported, please try another game")
+if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+
+local function runPlaceScript(url, chunkName)
+	if type(url) ~= "string" or url == "" then
+		return false
+	end
+
+	local ok, response = pcall(function()
+		return game:HttpGet(url)
+	end)
+
+	if not ok then
+		warn("[qwirkz Hub] DataModel:HttpGet request failed:", url)
+		return false
+	end
+
+	if type(response) ~= "string" or response == "" then
+		warn("[qwirkz Hub] Empty response:", url)
+		return false
+	end
+
+	local chunk, fail = loadstring(response, chunkName or url)
+	if not chunk then
+		warn("[qwirkz Hub] Loadstring failed:", tostring(fail))
+		return false
+	end
+
+	local done, failed = pcall(chunk)
+	if not done then
+		warn("[qwirkz Hub] Runtime error:", tostring(failed))
+		return false
+	end
+
+	return true
+end
+
+local placeLoaders = {
+	[142823291] = function()
+		task.spawn(runPlaceScript, "https://raw.githubusercontent.com/qwirkzer/Qwirkz-Hub/refs/heads/main/mm2.lua", "MurderMystery2")
+	end,
+    [0] = function()
+		task.spawn(runPlaceScript, "https://raw.githubusercontent.com/qwirkzer/Qwirkz-Hub/refs/heads/main/etoh.luau", "EternalTowersofHell")
+	end,
+}
+
+local scriptLoader = placeLoaders[game.PlaceId]
+if scriptLoader then
+	scriptLoader()
 end
