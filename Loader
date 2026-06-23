@@ -23,12 +23,10 @@ local function runPlaceScript(url, chunkName)
 		return false
 	end
 
-	local ok, response = pcall(function()
-		return game:HttpGet(url)
-	end)
+	local ok, response = pcall(game.HttpGet, game, url)
 
 	if not ok then
-		warn("[qwirkz Hub] DataModel:HttpGet request failed:", url)
+		warn("[qwirkz Hub] HttpGet request failed:", url)
 		return false
 	end
 
@@ -56,7 +54,7 @@ local placeLoaders = {
 	[142823291] = function()
 		task.spawn(runPlaceScript, "https://raw.githubusercontent.com/qwirkzer/Qwirkz-Hub/refs/heads/main/mm2.lua", "MurderMystery2")
 	end,
-    [0] = function()
+	[0] = function()
 		task.spawn(runPlaceScript, "https://raw.githubusercontent.com/qwirkzer/Qwirkz-Hub/refs/heads/main/etoh.luau", "EternalTowersofHell")
 	end,
 }
